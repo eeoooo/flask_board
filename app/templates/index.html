@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Main-->
+<div id="main">
+
+    <div class="container px-5" id="one">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xxl-6">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder mb-3">Build things that build things!</h1>
+                    <p class="lead fw-normal text-muted mb-4">이우윤입니다</p>
+                    <a class="btn btn-danger btn-lg" href="#scroll-target">WHO I AM</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<a href="url_for()"></a>
+            <!-- About section one-->
+            <section class="py-5 about_me">
+                <div class="container px-5 my-5"  id="two">
+                    <div class="row gx-5 align-items-center">
+                        <!-- <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="data/spongebob.jpg" alt="..." /></div> -->
+                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="{{ url_for('static', filename='data/powerpuffgirl.png') }}" alt="..." /></div>
+                        
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">Programmer</h2>
+                            <p class="lead fw-normal text-muted mb-0">배움은 열성을 다해 갈구하고<br> 부지런히 집중해야 얻을 수 있는 것</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- About section two-->
+            <section class="py-5" id="three">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="{{ url_for('static', filename='data/profile.png') }}" alt="..." /></div>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">WooYoon Lee</h2>
+                            <p class="lead fw-normal text-muted mb-0">랄랄라<br> 랄랄라 <br> 랄라라랄라라</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+</div>
+<div class="continaer" id="scroll-target">
+    {% include 'intro.html' %}
+</div>
+{% endblock %}

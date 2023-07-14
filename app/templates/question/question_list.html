@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- 질문 목록 -->
+{#  render_template 함수에서 전달받은 질문 목록 데이터 question_list가 있는지 검사 #}
+
+<div class="container my-3">
+    {% if g.user %}
+    <a href="{{ url_for ('question.create') }}" class="btn btn-dark">질문 등록</a>
+    {% endif %}
+    <p>
+
+    <table class="table">
+        <thead>
+        <tr class="table-danger">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr>
+            <!-- <td>{{ loop.index }}</td> -->
+            <!-- <td>{{ question.id }}</td> -->
+            <!-- <td>{{ question_list.total - ((question_list.page-1) * question_list.per_page) - loop.index0 }}</td> -->
+            
+            <td>{{ ((question_list.page-1) * question_list.per_page) + loop.index }}</td>
+            <td>
+                <a href="{{ url_for('question.detail', question_id=question.id) }}" style="text-decoration: none; color:darkslateblue">{{ question.subject }}</a>
+            </td>
+            <td>{{ question.create_date | date_time}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if question_list.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ question_list.prev_num }}">이전</a>
+        </li>
+        {% else %}
+                <!-- 이전 페이지가 있는 경우에는 "이전" 링크가 활성화, 이전 페이지가 없는 경우에는 "이전" 링크가 비활성화 -->
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="javascript:void(0)">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지번호 -->
+        {% for page_num in question_list.iter_pages() %}
+        {% if page_num %}
+        {% if page_num != question_list.page %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+        </li>
+        {% else %}
+                <!-- 현재 페이지와 같을 경우에는 active클래스를 적용하여 강조 -->
+        <li class="page-item active" aria-current="page">
+            <a class="page-link bg-danger border-danger focus-ring focus-ring-warning" href="javascript:void(0)">{{ page_num }}</a>
+        </li>
+        {% endif %}
+        {% else %}
+        <li class="disabled">
+            <a class="page-link" href="javascript:void(0)">...</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <!-- 다음페이지 -->
+        {% if question_list.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ question_list.next_num }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="javascript:void(0)">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
+    </div>
+    {% endblock %}

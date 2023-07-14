@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About 이우윤</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        body{
+            position: relative;
+            min-height: 100vh;
+        }
+        /* The navigation bar */
+        .navbar {
+        overflow: hidden;
+        background-color: #4285a1;
+        position: fixed; /* Set the navbar to fixed position */
+        top: 0; /* Position the navbar at the top of the page */
+        width: 100%; /* Full width */
+        }
+        #footer{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header-->
+    <div id="header" class="py-5">
+        {% include 'navbar.html' %}
+        <!-- navbar가 들어가는 부분 -->
+    </div>
+    <div class="container pb-4">
+        {% block content %}
+        
+        <!-- main이 삽입될 부분 -->
+        
+        {% endblock %}
+    </div>
+    <!-- Footer-->
+    <div id="footer" class="bg-light py-4">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0 text-danger">Copyright &copy; WOOYOONLEE 2023</div></div>
+                <div class="col-auto">
+                    <span class="text-danger mx-1">dndbs@naver.com</span>
+                    <span class="text-danger mx-1">&middot;</span>
+                    <a class="link-danger small" href="mailto:atangi@naver.com">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</body>
+</html>
